@@ -1,0 +1,9 @@
+.ms_number-box{
+    height: 100px;
+    background-color: aqua;
+    margin-top: 25vh;
+}
+h1{
+    line-height: 100px;
+    vertical-align: middle;
+}
