@@ -14,7 +14,7 @@ function randomNumbers (quantita){
 function controllaArray (array1, array2){
     let totale = 0;
     for (i=0; i < array1.length; i++){
-        if (array1[i] != array2[i]){
+        if (!array1.includes(array2[i])){
             console.log("ahi ahi toppai");
         }else{
             totale++;
@@ -32,30 +32,38 @@ function interrogaUtente (volte){
     }
     return numeriInseriti
 }
-
-
-let numeriGenerati = randomNumbers(5);
-console.log(numeriGenerati);
-//console.log(controllaArray(numeriGenerati, inputNumeriUtente));
-
-
-let secondi = 10;
-const tempoRimanente = document.getElementById("timer");
-tempoRimanente.innerHTML = secondi;
-
-let timer = setInterval(function(){
-    secondi--;
-    if (secondi == 0){
-        clearInterval(timer);
-        tempoRimanente.innerHTML = "Tempo scaduto!";
-        let inputNumeriUtente = interrogaUtente(5);
-        console.log(inputNumeriUtente);
-
-    }else{
-        tempoRimanente.innerHTML = secondi;
-    }
-}, 1000);
-
+//svolgimento della partita
 function partita(){
+    let numeriGenerati = randomNumbers(5);
+    console.log(numeriGenerati);
+    const comparsaNumeri = document.getElementById("numbers");
+    comparsaNumeri.innerHTML = numeriGenerati;
+    ;    
+    let secondi =30;
+    const tempoRimanente = document.getElementById("timer");
+    tempoRimanente.innerHTML = secondi;
 
+    let timer = setInterval(function(){
+        secondi--;
+        if (secondi == 0){
+            clearInterval(timer);
+            tempoRimanente.innerHTML = "Riprova?";
+            let inputNumeriUtente = interrogaUtente(5);
+            console.log(inputNumeriUtente);
+            let esito = controllaArray(numeriGenerati, inputNumeriUtente);
+            comparsaNumeri.innerHTML = "Hai indovinato " + esito + " numeri!";
+        }else if(secondi == 1){
+            comparsaNumeri.innerHTML = "";
+            tempoRimanente.innerHTML = secondi;
+        }else{
+            tempoRimanente.innerHTML = secondi;1
+        }
+    }, 1000);
+  
 }
+
+let giocare = document.getElementById("giocare");
+//al premere del bottone, la partita inizia
+giocare.addEventListener("click", function(){
+    partita();
+});
