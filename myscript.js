@@ -35,7 +35,27 @@ function interrogaUtente (volte){
 
 
 let numeriGenerati = randomNumbers(5);
-let inputNumeriUtente = interrogaUtente(5);
 console.log(numeriGenerati);
-console.log(inputNumeriUtente);
-console.log(controllaArray(numeriGenerati, inputNumeriUtente));
+//console.log(controllaArray(numeriGenerati, inputNumeriUtente));
+
+
+let secondi = 10;
+const tempoRimanente = document.getElementById("timer");
+tempoRimanente.innerHTML = secondi;
+
+let timer = setInterval(function(){
+    secondi--;
+    if (secondi == 0){
+        clearInterval(timer);
+        tempoRimanente.innerHTML = "Tempo scaduto!";
+        let inputNumeriUtente = interrogaUtente(5);
+        console.log(inputNumeriUtente);
+
+    }else{
+        tempoRimanente.innerHTML = secondi;
+    }
+}, 1000);
+
+function partita(){
+
+}
